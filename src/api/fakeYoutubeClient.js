@@ -1,11 +1,15 @@
 import axios from "axios";
 
-export default class FakeYoutube{
-    constructor() {
-    }
-    async search(keyword) {
+export default class FakeYoutubeClient {
+    /*constructor() {
+    }*/
+    /*async search(keyword) {
         return keyword ? this.#searchByword(keyword) : this.#mostPopular();
+    }*/
+    async search(){
+        return axios.get(`/videos/search.json`);
     }
+    /*
     async #searchByword(keyword) {
         return axios
             .get(`/videos/search.json`)
@@ -18,5 +22,8 @@ export default class FakeYoutube{
             .get(`/videos/popular.json`)
             .then((res)=>res.data.items);
 
+    }*/
+    async videos(){
+        return axios.get('/videos/popular.json');
     }
 }
