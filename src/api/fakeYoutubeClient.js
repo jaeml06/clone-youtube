@@ -6,8 +6,9 @@ export default class FakeYoutubeClient {
     /*async search(keyword) {
         return keyword ? this.#searchByword(keyword) : this.#mostPopular();
     }*/
-    async search(){
-        return axios.get(`/videos/search.json`);
+    async search({params}){
+        return params.relatedToVideoId
+        ? axios.get(`/videos/related.json`) : axios.get(`/videos/search.json`);
     }
     /*
     async #searchByword(keyword) {
@@ -25,5 +26,8 @@ export default class FakeYoutubeClient {
     }*/
     async videos(){
         return axios.get('/videos/popular.json');
+    }
+    async channels(){
+        return axios.get('/videos/channel.json');
     }
 }
